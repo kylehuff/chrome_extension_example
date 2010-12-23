@@ -1,0 +1,13 @@
+This is a bare naked chrome/chromium extension for testing/examples/development.
+
+This extenions contains:
+
+manifest.json
+background.html
+content_script.js
+related images
+options.html
+popup.html
+
+To create a new extension example, checkout a new branch and make the changes there. This should always be unmodified, ready to create other examples with the base framework.
+

@@ -1,0 +1,49 @@
+<html>
+<head>
+<script>
+
+var myExtenObj = {
+
+    // Do one-time initialization here.
+    init: function() {
+        // Setup a "request" listener for simple one time requests.
+        chrome.extension.onRequest.addListener(myExtenObj.onRequest);
+        // Setup a "port" listener for long-lived connections
+        chrome.extension.onConnect.addListener(myExtenObj.onPortConnection);
+    },
+
+    // Called when a message is passed.
+    onRequest: function(request, sender, response_cb) {
+        console.log(request, sender, response_cb);
+        response_cb({"response": "some result.."})
+    },
+
+    onPortConnection: function(port) {
+        console.log("We just received a port connect; here are the objects: ", port);
+        port.onMessage.addListener(function(msg) {
+            myExtenObj.onPortMessage(port, msg);
+        });
+        port.onDisconnect.addListener(myExtenObj.onPortDisconnect);
+    },
+
+    onPortMessage: function(port, msg) {
+        console.log("We just received a port message; here are the objects: ", port, msg);
+        port.postMessage({'msg': "I received your message; thanks for thinking of me."});
+    },
+
+    onPortDisconnect: function(port) {
+        console.log("We just received a port disconnect; here is the object: ", port);
+        // We should do whatever cleanup is needed; the extension has gone away.
+    },
+
+
+};
+
+</script>
+</head>
+<body>
+</body>
+<script>
+    myExtenObj.init();
+</script>
+</html>
