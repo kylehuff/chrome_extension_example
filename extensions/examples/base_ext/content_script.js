@@ -1,3 +1,9 @@
+window["my_custom_function"] = function(state) {
+  alert('HELLO');
+}
+
+window.my_custom_function();
+
 
 var myContentScript = {
 
@@ -18,3 +24,4 @@ var myContentScript = {
 };
 
 myContentScript.onLoad();
+

@@ -20,6 +20,10 @@
     }],
     "options_page": "options.html",
     "permissions": [
-        "http://www.google.com/"
+       "contextMenus",
+       "tabs",
+       "http://*/*",
+       "https://*/*",
+       "notifications"
     ]
 }
